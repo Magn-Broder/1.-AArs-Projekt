@@ -5,7 +5,7 @@ from passlib.hash import sha256_crypt
 
 def register_user_to_db(username, password, confirm_password):
     if password != confirm_password:
-        flash("Passwords don't match", 'error')
+        flash("Passwords er ikke ens", 'error')
         return False  # Passwords do not match
     
     con = sqlite3.connect('database.db')
@@ -46,7 +46,7 @@ def register():
         confirm_password = request.form['confirm_password']
         
         if register_user_to_db(username, password, confirm_password):
-            flash('Registration successful', 'success')
+            flash('Registration successfuld', 'success')
             return redirect(url_for('login'))
     
     return render_template('register.html')
@@ -70,8 +70,8 @@ def login():
 def home():
     if 'username' in session:
         return render_template('home.html', username=session['username'])
-    else:
-        return "Username or Password is wrong!"
+    else: 
+        return "Brugernavn eller Password er forkert!"
 
 
 @app.route('/logout')
