@@ -109,7 +109,10 @@ def login():
 @app.route('/home', methods=['POST', "GET"])
 def home():
     if 'username' in session:
-        return render_template('home.html', username=session['username'])
+        conn = get_db_connection()
+        appointments = conn.execute('SELECT * FROM appointments WHERE date = date("now")').fetchall()
+        conn.close()
+        return render_template('home.html', username=session['username'], appointments=appointments)
     else:
         return "Brugernavn eller Password er forkert!"
 
@@ -123,6 +126,15 @@ def create_appointment():
         create_appointment(hairdresser, date, time)
         flash('Appointment created successfully!', 'success')
         return redirect(url_for('index'))
+
+    if 'username' in session:
+        username = session['username']
+        conn = get_db_connection()
+        user = conn.execute('SELECT name FROM login WHERE username = ?', (username,)).fetchone()
+        conn.close()
+        if user:
+            name = user['name']
+            return render_template('create_appointment.html', name=name)
 
     return render_template('create_appointment.html')
 
