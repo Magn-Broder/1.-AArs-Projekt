@@ -1,0 +1,122 @@
+/* Common Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #DDCFBC;
+}
+
+h1 {
+    margin-top: 0;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+/* Specific Styles */
+/* login.html */
+.login-container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* register.html */
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* home.html */
+.home-container {
+    background-color: #DDCFBC;
+    color: #5d3425;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.home-container a {
+    color: rgb(238, 236, 236);
+    background-color: #5d3425;
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.4em;
+    margin: 4px 2px;
+    text-decoration: none;
+    border-radius: 3%;
+}
+
+/* create_appointment.html */
+.create-appointment-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+.btn input {
+    text-align: center;
+}
+
+/* book_appointment.html */
+.book-appointment-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.book-appointment-container table {
+    margin-bottom: 20px;
+}
+
+.book-appointment-container input[type="radio"] {
+    padding-right: 20px;
+}
+
+/* Flash Messages */
+.flash {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.success {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.error {
+    background-color: #FF5733;
+    color: #fff;
+}
