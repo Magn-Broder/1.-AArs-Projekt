@@ -15,7 +15,7 @@ def get_db_connection():
 def initialize_database():
     conn = get_db_connection()
     conn.execute('CREATE TABLE IF NOT EXISTS login (id INTEGER PRIMARY KEY AUTOINCREMENT, name, username TEXT, password TEXT)')
-    conn.execute('CREATE TABLE IF NOT EXISTS appointments (id INTEGER PRIMARY KEY AUTOINCREMENT, hairdresser TEXT, date TEXT, time TEXT, booked_by TEXT)')
+    conn.execute('CREATE TABLE IF NOT EXISTS appointments (id INTEGER PRIMARY KEY AUTOINCREMENT, hairdresser TEXT, date TEXT, time TEXT, booked_by TEXT, booker_email)')
     conn.commit()
     conn.close()
 
@@ -53,14 +53,14 @@ def create_appointment_form(hairdresser, date, time):
     conn.close()
 
 
-def book_appointment_form(appointment_id, booked_by):
+def book_appointment_form(appointment_id, booked_by, booker_email):
     conn = get_db_connection()
     appointment = conn.execute('SELECT * FROM appointments WHERE id = ?', (appointment_id,)).fetchone()
     if appointment:
         if appointment['booked_by']:
             flash('Appointment already booked!', 'error')
         else:
-            conn.execute('UPDATE appointments SET booked_by = ? WHERE id = ?', (booked_by, appointment_id))
+            conn.execute('UPDATE appointments SET booked_by = ?, booker_email = ? WHERE id = ?', (booked_by, booker_email, appointment_id))
             conn.commit()
             flash('Appointment booked successfully!', 'success')
     else:
@@ -109,12 +109,18 @@ def login():
 @app.route('/home', methods=['POST', "GET"])
 def home():
     if 'username' in session:
+        username = session['username']
         conn = get_db_connection()
-        appointments = conn.execute('SELECT * FROM appointments WHERE date = date("now")').fetchall()
+        user = conn.execute('SELECT name FROM login WHERE username = ?', (username,)).fetchone()
         conn.close()
-        return render_template('home.html', username=session['username'], appointments=appointments)
-    else:
-        return "Brugernavn eller Password er forkert!"
+        if 'username' in session:
+            conn = get_db_connection()
+            hairdresser_name = user['name']
+            appointments = conn.execute('SELECT * FROM appointments WHERE hairdresser = ? AND booked_by IS NOT NULL AND date = date("now") ORDER BY date ASC, time ASC', (hairdresser_name,)).fetchall()
+            conn.close()
+            return render_template('home.html', username=session['username'], appointments=appointments)
+        else:
+            return "Brugernavn eller Password er forkert!"
 
 
 @app.route('/create-appointment', methods=['GET', 'POST'])
@@ -144,11 +150,12 @@ def book_appointment():
     if request.method == 'POST':
         appointment_id = request.form['appointment_id']
         booked_by = request.form['booked_by']
-        book_appointment_form(appointment_id, booked_by)
+        booker_email = request.form['booker_email']
+        book_appointment_form(appointment_id, booked_by, booker_email)
         return redirect(url_for('index'))
 
     conn = get_db_connection()
-    appointments = conn.execute('SELECT * FROM appointments WHERE booked_by IS NULL').fetchall()
+    appointments = conn.execute('SELECT * FROM appointments WHERE booked_by IS NULL ORDER BY date ASC, time ASC').fetchall()
     conn.close()
     return render_template('book_appointment.html', appointments=appointments)
 
