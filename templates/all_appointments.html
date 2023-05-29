@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-    <title>Échelon | Medarbejder</title>
+    <title>Échelon | Alle reservation</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Velkommen, {{ username }}!</h1>
+    <h1>Her kan du se alle dine fremtidige reservationer!</h1>
 
-    <div class="home-container">
-        <a href="{{ url_for('create_appointment') }}">Opret reservation</a>
-        <a href="{{ url_for('book_appointment') }}">Book reservation</a><br><br><br>
-        <h2>Dagens reaservationer:</h2>
+    <h2>Alle reservationer:</h2>
+    <div class="all-appointments-container">
         <table>
             <thead>
                 <tr>
-                    <th>Booking ID</th>
+                    <th>Appointment ID</th>
                     <th>Frisør</th>
                     <th>Dato</th>
                     <th>Tidspunkt</th>
-                    <th>Booked af</th>
+                    <th>Booket af</th>
                     <th>Bookerens Email</th>
                 </tr>
             </thead>
@@ -35,9 +33,7 @@
                 {% endfor %}
             </tbody>
         </table><br><br>
-        <a href="{{ url_for('all_appointments') }}">Vis alle reservationer</a><br><br><br>
-        <a href="{{ url_for('register') }}">Opret ny bruger</a>
-        <a href="{{ url_for('logout') }}">Log ud</a>
+        <p><a href="{{ url_for('home') }}">Gå tilbage</a></p>
     </div>
 </body>
 </html>

@@ -1,52 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="da">
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    <title>Book Appointment</title>
+    <title>Échelon | Booking</title>
 </head>
 <body>
-    <h1>Available Appointments</h1>
-    {% if appointments %}
-        <form method="POST" action="{{ url_for('book_appointment') }}">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Appointment ID</th>
-                        <th>Hairdresser</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Booked By</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for appointment in appointments %}
+    <div class="book-appointment-container">
+        <h1>Ledige reservationer</h1>
+        {% if appointments %}
+            <form method="POST" action="{{ url_for('book_appointment') }}">
+                <table>
+                    <thead>
                         <tr>
-                            <td>{{ appointment['id'] }}</td>
-                            <td>{{ appointment['hairdresser'] }}</td>
-                            <td>{{ appointment['date'] }}</td>
-                            <td>{{ appointment['time'] }}</td>
-                            <td>{{ appointment['booked_by'] or 'Available' }}</td>
-                            <td>
-                                {% if not appointment['booked_by'] %}
-                                    <input type="radio" name="appointment_id" value="{{ appointment['id'] }}" required>
-                                {% else %}
-                                    N/A
-                                {% endif %}
-                            </td>
+                            <th>Appointment ID</th>
+                            <th>Frisør</th>
+                            <th>Dato</th>
+                            <th>Tidspunkt</th>
+                            <th>Satus</th>
+                            <th>Vælg</th>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <label for="booked_by">Booked By:</label>
-            <input type="text" name="booked_by" id="booked_by" required><br>
-            <label for="booker_email">Bookers email:</label>
-            <input type="text" name="booker_email" id="booker_email" required><br>
-            <input type="submit" value="Book Appointment">
-        </form>
-    {% else %}
-        <p>No available appointments.</p>
-    {% endif %}
-    <p><a href="{{ url_for('home') }}">Go back to Home</a></p>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments %}
+                            <tr>
+                                <td>{{ appointment['id'] }}</td>
+                                <td>{{ appointment['hairdresser'] }}</td>
+                                <td>{{ appointment['date'] }}</td>
+                                <td>{{ appointment['time'] }}</td>
+                                <td>{{ appointment['booked_by'] or 'Ledig' }}</td>
+                                <td>
+                                    {% if not appointment['booked_by'] %}
+                                        <input type="radio" name="appointment_id" value="{{ appointment['id'] }}" required>
+                                    {% else %}
+                                        N/A
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <br><br>
+                <div class="mb-3">
+                <label for="booked_by">Angiv navn:</label>
+                <input type="text" name="booked_by" id="booked_by" required>
+                </div>
+                <br>
+                <div class="mb-3">
+                <label for="booker_email">Angiv email:</label>
+                <input type="text" name="booker_email" id="booker_email" required><br><br>
+                </div>
+                <button type="submit" class="btn btn-primary">Book reservation</button>
+            </form>
+        {% else %}
+            <p>No available appointments.</p>
+        {% endif %}
+        <p><a href="{{ url_for('home') }}">Gå tilbage</a></p>
+    </div>
 </body>
 </html>

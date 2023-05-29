@@ -1,7 +1,7 @@
 /* Common Styles */
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin-top: 30px;
     padding: 0;
     background-color: #DDCFBC;
 }
@@ -9,6 +9,7 @@ body {
 h1 {
     margin-top: 0;
     text-align: center;
+    color: #5d3425;
 }
 
 h2 {
@@ -29,31 +30,73 @@ input[type="submit"] {
 }
 
 table {
+    width: 50%;
+    overflow: hidden;
+    margin: auto;
+    padding: 75px;
+    background: rgba(0, 0, 0, 0.18);;
+    border-radius: 10px ;
     border-collapse: collapse;
-    width: 100%;
 }
 
 table th,
 table td {
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid #5d3425;
 }
 
 /* Specific Styles */
 /* login.html */
 .login-container {
-    max-width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    width: 380px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 400px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.18);;
+    border-radius: 15px ;
+}
+
+.login-container button {
+    color: rgb(238, 236, 236);
+    background-color: #5d3425;
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.4em;
+    margin: 4px 2px;
+    text-decoration: none;
+    border-radius: 10%;
 }
 
 /* register.html */
 .register-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    width: 380px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 400px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.18);;
+    border-radius: 20px ;
+}
+
+.register-container button {
+    color: rgb(238, 236, 236);
+    background-color: #5d3425;
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.4em;
+    margin: 4px 2px;
+    text-decoration: none;
+    border-radius: 10%;
+}
+
+
+.mb-3{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    grid-gap: 10x;
 }
 
 /* home.html */
@@ -80,28 +123,49 @@ table td {
 
 /* create_appointment.html */
 .create-appointment-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
+    width: 380px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 400px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.18);;
+    border-radius: 15px ;
 }
-.btn input {
+
+.create-appointment-container button{
+    color: rgb(238, 236, 236);
+    background-color: #5d3425;
+    border: none;
+    padding: 0.5rem;
     text-align: center;
+    font-size: 1.4em;
+    margin: 4px 2px;
+    text-decoration: none;
+    border-radius: 10%;
 }
 
 /* book_appointment.html */
 .book-appointment-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 1000px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 400px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.18);;
+    border-radius: 15px ;
 }
 
-.book-appointment-container table {
-    margin-bottom: 20px;
-}
 
-.book-appointment-container input[type="radio"] {
-    padding-right: 20px;
+.book-appointment-container button {
+    color: rgb(238, 236, 236);
+    background-color: #5d3425;
+    border: none;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 1.4em;
+    margin: 4px 2px;
+    text-decoration: none;
+    border-radius: 5%;
 }
 
 /* Flash Messages */

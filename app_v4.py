@@ -155,9 +155,25 @@ def book_appointment():
         return redirect(url_for('index'))
 
     conn = get_db_connection()
-    appointments = conn.execute('SELECT * FROM appointments WHERE booked_by IS NULL ORDER BY date ASC, time ASC').fetchall()
+    appointments = conn.execute('SELECT * FROM appointments WHERE booked_by IS NULL AND date >= date("now") ORDER BY date ASC, time ASC').fetchall()
     conn.close()
     return render_template('book_appointment.html', appointments=appointments)
+
+
+@app.route('/all-appointments', methods=['POST', "GET"])
+def all_appointments():
+    if 'username' in session:
+        username = session['username']
+        conn = get_db_connection()
+        user = conn.execute('SELECT name FROM login WHERE username = ?', (username,)).fetchone()
+        conn.close()
+        if 'username' in session:
+            conn = get_db_connection()
+            hairdresser_name = user['name']
+            appointments = conn.execute('SELECT * FROM appointments WHERE hairdresser = ?  ORDER BY date ASC, time ASC', (hairdresser_name,)).fetchall()
+            conn.close()
+            return render_template('all_appointments.html', username=session['username'], appointments=appointments)
+    
 
 
 @app.route('/logout')
