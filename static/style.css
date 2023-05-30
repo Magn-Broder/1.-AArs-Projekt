@@ -15,6 +15,7 @@ h1 {
 h2 {
     margin-top: 0;
     text-align: center;
+    color: #5d3425;
 }
 
 form {
@@ -45,6 +46,27 @@ table td {
     border: 1px solid #5d3425;
 }
 
+input[type="text"], input[type="email"], input[type="password"] {
+    font-size: 0.9em;
+    color: white;
+    font-weight: 100;
+    width: 150%;
+    height: 10%;
+    display: block;
+    border: none;
+    padding: 0.8em;
+    border: solid 1px #383838;
+    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #5d3425);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #5d3425);
+    background-position: -800px 0;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+  }
+
 /* Specific Styles */
 /* login.html */
 .login-container {
@@ -53,7 +75,8 @@ table td {
     margin: auto;
     margin: 20 0 0 400px;
     padding: 50px;
-    background: rgba(0, 0, 0, 0.18);;
+    background: rgba(0, 0, 0, 0.18);
+    color: #5d3425;
     border-radius: 15px ;
 }
 
@@ -77,6 +100,7 @@ table td {
     margin: 20 0 0 400px;
     padding: 50px;
     background: rgba(0, 0, 0, 0.18);;
+    color: #5d3425;
     border-radius: 20px ;
 }
 
@@ -144,6 +168,17 @@ table td {
     border-radius: 10%;
 }
 
+.all-appointments-container {
+    width: 1000px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 400px;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.18);
+    color: #5d3425;
+    border-radius: 15px ;
+}
+
 /* book_appointment.html */
 .book-appointment-container {
     width: 1000px;
@@ -151,7 +186,8 @@ table td {
     margin: auto;
     margin: 20 0 0 400px;
     padding: 50px;
-    background: rgba(0, 0, 0, 0.18);;
+    background: rgba(0, 0, 0, 0.18);
+    color: #5d3425;
     border-radius: 15px ;
 }
 
