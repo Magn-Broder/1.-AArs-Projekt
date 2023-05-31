@@ -3,7 +3,7 @@ from flask import Flask, flash, redirect, url_for, render_template, request, ses
 
 app = Flask(__name__)
 app.secret_key = "r@nd0mSk_1"
-DATABASE = 'database.db'
+DATABASE = '/var/www/Echelon-booking/database.db'
 
 
 def get_db_connection():
