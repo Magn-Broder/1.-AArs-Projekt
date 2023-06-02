@@ -1,9 +1,10 @@
 import sqlite3
 from flask import Flask, flash, redirect, url_for, render_template, request, session
+from passlib.hash import sha256_crypt
 
 app = Flask(__name__)
 app.secret_key = "r@nd0mSk_1"
-DATABASE = '/var/www/Echelon-booking/database.db'
+DATABASE = 'database.db'
 
 
 def get_db_connection():
@@ -24,10 +25,11 @@ def register_user_to_db(name, username, password, confirm_password):
     if password != confirm_password:
         flash("Passwords er ikke ens", 'error')
         return False  # Passwords do not match
-
+    
+    hashed_password = sha256_crypt.encrypt(password)
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('INSERT INTO login (name, username, password) VALUES (?, ?, ?)', (name, username, password))
+    cur.execute('INSERT INTO login (name, username, password) VALUES (?, ?, ?)', (name, username, hashed_password))
     conn.commit()
     conn.close()
     return True
@@ -40,8 +42,8 @@ def check_user(username, password):
     row = cur.fetchone()
 
     if row:
-        stored_password = row[0]
-        if stored_password == password:
+        hashed_password = row[0]
+        if sha256_crypt.verify(password, hashed_password):
             return True
     return False
 
