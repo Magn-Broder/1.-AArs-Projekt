@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <title>Echelon | Registrer</title>
+</head>
+<body>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class="flashes">
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <h1>Échelon Salon Registerings side</h1>
+  <div class="register-container">
+    <h2>Registrer medarbejder</h2>
+    <form action="/register" method="post">
+      <div class="mb-3">
+        <label for="Name" class="form-label">Navn</label>
+        <input type="text" class="form-control" id="Name" name="name">
+      </div>
+      <br>
+      <div class="mb-3">
+        <label for="Username" class="form-label">Brugernavn</label>
+        <input type="text" class="form-control" id="Username" name="username">
+      </div>
+      <br>
+      <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="Password" name="password">
+      </div>
+      <br>
+      <div class="mb-3">
+        <label for="Password" class="form-label">Gentag Password</label>
+        <input type="password" class="form-control" id="Password" name="confirm_password">
+      </div>
+      <br><br>
+      <button type="submit" class="btn btn-primary">Opret</button>
+    </form>
+    <p><a href="{{ url_for('home') }}">Gå tilbage</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <title>Échelon | Alle reservation</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Her kan du se alle dine fremtidige reservationer!</h1>
+
+    <h2>Alle reservationer:</h2>
+    <div class="all-appointments-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Appointment ID</th>
+                    <th>Frisør</th>
+                    <th>Dato</th>
+                    <th>Tidspunkt</th>
+                    <th>Booket af</th>
+                    <th>Bookerens Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment['id'] }}</td>
+                    <td>{{ appointment['hairdresser'] }}</td>
+                    <td>{{ appointment['date'] }}</td>
+                    <td>{{ appointment['time'] }}</td>
+                    <td>{{ appointment['booked_by'] or '-' }}</td>
+                    <td>{{ appointment['booker_email'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br><br>
+        <p><a href="{{ url_for('home') }}">Gå tilbage</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <title>Échelon | Medarbejder</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Velkommen, {{ username }}!</h1>
+
+    <div class="home-container">
+        <a href="{{ url_for('create_appointment') }}">Opret reservation</a>
+        <a href="{{ url_for('book_appointment') }}">Book reservation</a><br><br><br>
+        <h2>Dagens reservationer:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Frisør</th>
+                    <th>Dato</th>
+                    <th>Tidspunkt</th>
+                    <th>Booked af</th>
+                    <th>Bookerens Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment['id'] }}</td>
+                    <td>{{ appointment['hairdresser'] }}</td>
+                    <td>{{ appointment['date'] }}</td>
+                    <td>{{ appointment['time'] }}</td>
+                    <td>{{ appointment['booked_by'] or '-' }}</td>
+                    <td>{{ appointment['booker_email'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table><br><br>
+        <a href="{{ url_for('all_appointments') }}">Vis alle reservationer</a><br><br><br>
+        <a href="{{ url_for('register') }}">Opret ny bruger</a>
+        <a href="{{ url_for('logout') }}">Log ud</a>
+    </div>
+</body>
+</html>
