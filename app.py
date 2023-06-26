@@ -4,7 +4,7 @@ from passlib.hash import sha256_crypt
 
 app = Flask(__name__)
 app.secret_key = "r@nd0mSk_1"
-DATABASE = 'database.db'
+DATABASE = '/var/www/Echelon-booking/database.db'
 
 
 def get_db_connection():
@@ -105,7 +105,7 @@ def login():
             flash('Invalid username or password', 'error')
             return redirect(url_for('login'))
 
-    return redirect(url_for('home'))
+    return redirect(url_for('index'))
 
 
 @app.route('/home', methods=['POST', "GET"])
